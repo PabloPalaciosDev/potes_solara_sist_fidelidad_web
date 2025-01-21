@@ -62,7 +62,7 @@ const RegisterForm = () => {
             contrasena: values.password,
             fechaNacimiento: values.fechaNacimiento,
         };
-        setUserData(valuesMapped);
+        setUserData({ email: values.email, password: values.password });
         try {
             const response = await register(valuesMapped);
             if (response?.success) {
@@ -83,10 +83,10 @@ const RegisterForm = () => {
         }
     };
 
-    const handleModalClose = async () => {
+    const handleModalClose = async (email, password) => {
         setModalOpen(false);
         if (modalMessage.includes("Registro exitoso")) {
-            const loginResponse = await login(userData.emailCliente, userData.contrasena);
+            const loginResponse = await login(email, password);
             if (loginResponse) {
                 navigate("/");
             }
@@ -259,7 +259,7 @@ const RegisterForm = () => {
             {/* Modal */}
             <Modal
                 open={modalOpen}
-                onClose={handleModalClose}
+                onClose={handleModalClose(userData.email, userData.password)}
                 aria-labelledby="modal-title"
                 aria-describedby="modal-description"
             >
@@ -279,7 +279,7 @@ const RegisterForm = () => {
                     <Typography id="modal-description" sx={{ mb: 2 }}>
                         {modalMessage}
                     </Typography>
-                    <Button variant="contained" onClick={handleModalClose}>
+                    <Button variant="contained" onClick={handleModalClose(userData.email, userData.password)}>
                         Continuar
                     </Button>
                 </Box>
