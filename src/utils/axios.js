@@ -3,7 +3,7 @@ import axios from "axios";
 // Crear cliente Axios
 export const apiClient = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
-    timeout: 10000,
+    timeout: 20000,
 });
 
 // Función para limpiar el token del almacenamiento
