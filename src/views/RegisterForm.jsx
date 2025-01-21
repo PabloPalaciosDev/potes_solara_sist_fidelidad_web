@@ -147,6 +147,7 @@ const RegisterForm = () => {
                                     error={touched.cedula && !!errors.cedula}
                                     helperText={touched.cedula && errors.cedula}
                                     sx={{ mb: 2 }}
+                                    placeholder="cedula sin guiones 812133121"
                                 />
                                 <TextField
                                     label="Nombre"
