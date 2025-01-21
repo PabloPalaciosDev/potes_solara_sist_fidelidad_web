@@ -52,8 +52,17 @@ const RegisterForm = () => {
 
     const handleRegister = async (values, { setSubmitting }) => {
         setLoading(true);
+        const valuesMapped = {
+            cedulaCliente: values.cedula,
+            nombreCliente: values.nombre,
+            apellidoCliente: values.apellido,
+            emailCliente: values.email,
+            telefonoCliente: values.telefono,
+            contrasena: values.password,
+            fechaNacimiento: values.fechaNacimiento,
+        };
         try {
-            const response = await register(values);
+            const response = await register(valuesMapped);
             if (response?.success) {
                 setModalMessage("¡Registro exitoso! Ahora se iniciará sesión.");
                 setModalOpen(true);
