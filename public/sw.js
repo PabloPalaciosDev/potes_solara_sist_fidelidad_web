@@ -2,8 +2,8 @@ const CACHE_NAME = "potes-solara-cache-v1";
 const urlsToCache = [
   "/",
   "../index.html",
-  "../src/assets/potessolara_icon.png",
-  "../src/assets/potessolara_iconxl.png",
+  "./potessolara_icon.png",
+  "./potessolara_iconxl.png",
 ];
 
 // Instalación del Service Worker
