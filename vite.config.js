@@ -12,12 +12,12 @@ export default defineConfig({
         name: "Potes Solara - Sistema de Fidelidad",
         icons: [
           {
-            src: "./src/assets/potessolara.png",
+            src: "./src/assets/potessolara_icon.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "./src/assets/potessolara.png",
+            src: "./src/assets/potessolara_iconxl.png",
             sizes: "512x512",
             type: "image/png",
           },
