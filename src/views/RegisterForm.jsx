@@ -21,6 +21,7 @@ const RegisterForm = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalMessage, setModalMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    const [userData, setUserData] = useState({});
 
     // Esquema de validación con Yup
     const validationSchema = Yup.object().shape({
@@ -61,6 +62,7 @@ const RegisterForm = () => {
             contrasena: values.password,
             fechaNacimiento: values.fechaNacimiento,
         };
+        setUserData(valuesMapped);
         try {
             const response = await register(valuesMapped);
             if (response?.success) {
@@ -84,7 +86,7 @@ const RegisterForm = () => {
     const handleModalClose = async () => {
         setModalOpen(false);
         if (modalMessage.includes("Registro exitoso")) {
-            const loginResponse = await login();
+            const loginResponse = await login(userData.emailCliente, userData.contrasena);
             if (loginResponse) {
                 navigate("/");
             }
