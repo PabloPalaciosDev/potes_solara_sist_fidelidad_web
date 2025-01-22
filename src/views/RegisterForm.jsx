@@ -46,9 +46,14 @@ const RegisterForm = () => {
             .min(8, "La contraseña debe tener al menos 8 caracteres"),
         fechaNacimiento: Yup.date()
             .required("La fecha de nacimiento es obligatoria")
-            .max(new Date(new Date().getFullYear() - 3, 11, 31), "La fecha de nacimiento no puede ser del mismo año actual")
-            .min(new Date(new Date().getFullYear() - 100, 0, 1), "La fecha de nacimiento no puede ser mayor a 100 años")
-
+            .max(
+                new Date(new Date().getFullYear() - 3, 11, 31),
+                "La fecha de nacimiento no puede ser del mismo año actual"
+            )
+            .min(
+                new Date(new Date().getFullYear() - 100, 0, 1),
+                "La fecha de nacimiento no puede ser mayor a 100 años"
+            ),
     });
 
     const handleRegister = async (values, { setSubmitting }) => {
@@ -104,7 +109,14 @@ const RegisterForm = () => {
                 px: 2,
             }}
         >
-            <Card sx={{ maxWidth: 500, width: "100%", borderRadius: 2, boxShadow: 3 }}>
+            <Card
+                sx={{
+                    maxWidth: 500,
+                    width: "100%",
+                    borderRadius: 2,
+                    boxShadow: 3,
+                }}
+            >
                 <CardContent>
                     <Typography
                         variant="h5"
@@ -169,8 +181,12 @@ const RegisterForm = () => {
                                     value={values.apellido}
                                     onChange={handleChange("apellido")}
                                     onBlur={handleBlur("apellido")}
-                                    error={touched.apellido && !!errors.apellido}
-                                    helperText={touched.apellido && errors.apellido}
+                                    error={
+                                        touched.apellido && !!errors.apellido
+                                    }
+                                    helperText={
+                                        touched.apellido && errors.apellido
+                                    }
                                     sx={{ mb: 2 }}
                                 />
                                 <TextField
@@ -180,8 +196,12 @@ const RegisterForm = () => {
                                     value={values.telefono}
                                     onChange={handleChange("telefono")}
                                     onBlur={handleBlur("telefono")}
-                                    error={touched.telefono && !!errors.telefono}
-                                    helperText={touched.telefono && errors.telefono}
+                                    error={
+                                        touched.telefono && !!errors.telefono
+                                    }
+                                    helperText={
+                                        touched.telefono && errors.telefono
+                                    }
                                     sx={{ mb: 2 }}
                                 />
                                 <TextField
@@ -203,8 +223,12 @@ const RegisterForm = () => {
                                     value={values.password}
                                     onChange={handleChange("password")}
                                     onBlur={handleBlur("password")}
-                                    error={touched.password && !!errors.password}
-                                    helperText={touched.password && errors.password}
+                                    error={
+                                        touched.password && !!errors.password
+                                    }
+                                    helperText={
+                                        touched.password && errors.password
+                                    }
                                     sx={{ mb: 2 }}
                                 />
                                 <TextField
@@ -214,7 +238,10 @@ const RegisterForm = () => {
                                     type="date"
                                     value={values.fechaNacimiento}
                                     onChange={(e) =>
-                                        setFieldValue("fechaNacimiento", e.target.value)
+                                        setFieldValue(
+                                            "fechaNacimiento",
+                                            e.target.value
+                                        )
                                     }
                                     InputLabelProps={{ shrink: true }}
                                     error={
@@ -235,7 +262,10 @@ const RegisterForm = () => {
                                     disabled={loading}
                                 >
                                     {loading ? (
-                                        <CircularProgress size={24} sx={{ color: "#fff" }} />
+                                        <CircularProgress
+                                            size={24}
+                                            sx={{ color: "#fff" }}
+                                        />
                                     ) : (
                                         "Registrarse"
                                     )}
@@ -259,7 +289,7 @@ const RegisterForm = () => {
             {/* Modal */}
             <Modal
                 open={modalOpen}
-                onClose={handleModalClose(userData.email, userData.password)}
+                onClose={() => setModalOpen(false)}
                 aria-labelledby="modal-title"
                 aria-describedby="modal-description"
             >
@@ -279,7 +309,12 @@ const RegisterForm = () => {
                     <Typography id="modal-description" sx={{ mb: 2 }}>
                         {modalMessage}
                     </Typography>
-                    <Button variant="contained" onClick={handleModalClose(userData.email, userData.password)}>
+                    <Button
+                        variant="contained"
+                        onClick={() =>
+                            handleModalClose(userData.email, userData.password)
+                        }
+                    >
                         Continuar
                     </Button>
                 </Box>
