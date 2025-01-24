@@ -8,7 +8,7 @@ import {
     Button,
 } from "@mui/material";
 import { AuthContext } from "../utils/AuthProvider";
-import Grid from '@mui/material/Grid2';
+import Grid from "@mui/material/Grid2";
 
 export default function ProfileScreen() {
     const { user } = useContext(AuthContext);

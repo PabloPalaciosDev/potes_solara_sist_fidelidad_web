@@ -20,7 +20,7 @@ const RegisterForm = () => {
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
     const [modalMessage, setModalMessage] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false); // Loader state
     const [userData, setUserData] = useState({});
 
     // Esquema de validación con Yup
@@ -57,7 +57,7 @@ const RegisterForm = () => {
     });
 
     const handleRegister = async (values, { setSubmitting }) => {
-        setLoading(true);
+        setLoading(true); // Activa el loader
         const valuesMapped = {
             cedulaCliente: values.cedula,
             nombreCliente: values.nombre,
@@ -84,7 +84,7 @@ const RegisterForm = () => {
             setModalOpen(true);
         } finally {
             setSubmitting(false);
-            setLoading(false);
+            setLoading(false); // Desactiva el loader
         }
     };
 
@@ -286,7 +286,7 @@ const RegisterForm = () => {
                 </CardContent>
             </Card>
 
-            {/* Modal */}
+            {/* Modal de confirmación */}
             <Modal
                 open={modalOpen}
                 onClose={() => setModalOpen(false)}
@@ -318,6 +318,20 @@ const RegisterForm = () => {
                         Continuar
                     </Button>
                 </Box>
+            </Modal>
+
+            {/* Modal de carga */}
+            <Modal
+                open={loading}
+                aria-labelledby="loading-modal-title"
+                aria-describedby="loading-modal-description"
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <CircularProgress color="primary" />
             </Modal>
         </Box>
     );

@@ -17,7 +17,7 @@ import { AuthContext } from "../utils/AuthProvider";
 import Grid from "@mui/material/Grid2";
 import PropTypes from "prop-types";
 
-export default function EventScreen({idevento}) {
+export default function EventScreen({ idevento }) {
     const { user } = useContext(AuthContext);
     const [evento, setEvento] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
@@ -71,8 +71,7 @@ export default function EventScreen({idevento}) {
             {/* Header con botón de regreso */}
             <Box
                 sx={{
-                    backgroundColor: "#52b62c",
-                    color: "white",
+                    color: "black",
                     display: "flex",
                     alignItems: "center",
                     p: 2,
@@ -80,17 +79,24 @@ export default function EventScreen({idevento}) {
             >
                 <IconButton
                     onClick={() => navigate("/")}
-                    sx={{ color: "white", mr: 2 }}
+                    sx={{ color: "black", mr: 2 }}
                 >
                     <ArrowBackIcon />
                 </IconButton>
-                <Typography variant="h6">{evento?.nombreEvento}</Typography>
+                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                    {evento?.nombreEvento}
+                </Typography>
             </Box>
 
             <Box sx={{ p: 2 }}>
                 <Card sx={{ mb: 3, borderRadius: 2, boxShadow: 3 }}>
                     <CardContent>
-                        <Typography variant="h5" fontWeight="bold" mb={2}>
+                        <Typography
+                            variant="h5"
+                            fontWeight="bold"
+                            mb={2}
+                            textAlign={"center"}
+                        >
                             {evento?.nombreEvento}
                         </Typography>
                         <Typography mb={1}>
@@ -99,7 +105,9 @@ export default function EventScreen({idevento}) {
                                 "es-ES"
                             )}
                         </Typography>
-                        <Typography mb={1}>🕒 Hora: {evento?.horaEvento}</Typography>
+                        <Typography mb={1}>
+                            🕒 Hora: {evento?.horaEvento}
+                        </Typography>
                         <Typography mb={1}>
                             📍 Lugar: {evento?.lugarEvento}
                         </Typography>
@@ -107,14 +115,12 @@ export default function EventScreen({idevento}) {
                             💵 Precio: {evento?.precioEvento}$
                         </Typography>
 
-                        <Typography
-                            variant="h6"
-                            fontWeight="bold"
-                            gutterBottom
-                        >
+                        <Typography variant="h6" fontWeight="bold" gutterBottom>
                             Detalles del Taller:
                         </Typography>
-                        <Typography>{evento?.descripcionEvento}</Typography>
+                        <Typography sx={{ textAlign: "justify" }}>
+                            {evento?.descripcionEvento}
+                        </Typography>
                     </CardContent>
                 </Card>
 
@@ -196,7 +202,10 @@ export default function EventScreen({idevento}) {
                         <Grid item>
                             <Button
                                 variant="contained"
-                                sx={{ backgroundColor: "#52b62c", color: "white" }}
+                                sx={{
+                                    backgroundColor: "#52b62c",
+                                    color: "white",
+                                }}
                                 onClick={handleAsistencia}
                             >
                                 Confirmar

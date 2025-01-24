@@ -6,6 +6,7 @@ import {
     Typography,
     TextField,
     Button,
+    Modal,
     CircularProgress,
     Alert,
 } from "@mui/material";
@@ -28,20 +29,22 @@ const LoginForm = () => {
     });
 
     const handleLogin = async (values, { setSubmitting }) => {
-        setLoading(true);
+        setLoading(true); // Activa el modal de carga
         setErrorMessage("");
         try {
             const loginResponse = await login(values.username, values.password);
             if (loginResponse) {
                 navigate("/");
             } else {
-                setErrorMessage("No se pudo iniciar sesión. Verifica tus credenciales.");
+                setErrorMessage(
+                    "No se pudo iniciar sesión. Verifica tus credenciales."
+                );
             }
         } catch (error) {
             setErrorMessage("Ocurrió un error inesperado. Intenta nuevamente.");
         } finally {
             setSubmitting(false);
-            setLoading(false);
+            setLoading(false); // Desactiva el modal de carga
         }
     };
 
@@ -70,7 +73,15 @@ const LoginForm = () => {
                         px: 2,
                     }}
                 >
-                    <Card sx={{ maxWidth: 400, width: "100%", p: 2, borderRadius: 2, boxShadow: 3 }}>
+                    <Card
+                        sx={{
+                            maxWidth: 400,
+                            width: "100%",
+                            p: 2,
+                            borderRadius: 2,
+                            boxShadow: 3,
+                        }}
+                    >
                         <CardContent>
                             <Typography
                                 variant="h5"
@@ -139,7 +150,10 @@ const LoginForm = () => {
                                 }}
                             >
                                 {loading ? (
-                                    <CircularProgress size={24} sx={{ color: "#fff" }} />
+                                    <CircularProgress
+                                        size={24}
+                                        sx={{ color: "#fff" }}
+                                    />
                                 ) : (
                                     "Iniciar Sesión"
                                 )}
@@ -159,6 +173,20 @@ const LoginForm = () => {
                             </Button>
                         </CardContent>
                     </Card>
+
+                    {/* Modal de carga */}
+                    <Modal
+                        open={loading}
+                        aria-labelledby="loading-modal-title"
+                        aria-describedby="loading-modal-description"
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <CircularProgress color="primary" />
+                    </Modal>
                 </Box>
             )}
         </Formik>
