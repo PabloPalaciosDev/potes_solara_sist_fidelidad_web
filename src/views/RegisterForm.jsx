@@ -27,7 +27,10 @@ const RegisterForm = () => {
     const validationSchema = Yup.object().shape({
         cedula: Yup.string()
             .required("La cédula es obligatoria")
-            .matches(/^\d+$/, "La cédula debe contener solo números"),
+            .matches(
+                /^(\d{1,2}-\d{1,4}-\d{1,5}|PE-\d{1,4}-\d{1,5}|E-\d{1,4}-\d{1,6}|N-\d{1,4}-\d{1,4}|\d{1,2}AV-\d{1,4}-\d{1,5}|\d{1,2}PI-\d{1,4}-\d{1,5})$/,
+                "La cédula no tiene un formato válido"
+            ),
         nombre: Yup.string()
             .required("El nombre es obligatorio")
             .min(2, "El nombre debe tener al menos 2 caracteres"),
@@ -161,7 +164,7 @@ const RegisterForm = () => {
                                     error={touched.cedula && !!errors.cedula}
                                     helperText={touched.cedula && errors.cedula}
                                     sx={{ mb: 2 }}
-                                    placeholder="cedula sin guiones 812133121"
+                                    placeholder="Ejemplo: 8-1234-12345"
                                 />
                                 <TextField
                                     label="Nombre"
